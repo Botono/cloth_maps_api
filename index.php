@@ -83,13 +83,13 @@ $app->post('/login', function (ServerRequestInterface $request, ResponseInterfac
       $response_code = 200;
     } else {
       $response_obj['success'] = 0;
-      $response_obj['message'] = 'Password validation failed';
+      $response_obj['message'] = 'Username or password invalid.';
       $response_code = 401;
     }
 
   } else {
     $response_obj['success'] = 0;
-    $response_obj['message'] = 'DB problem';
+    $response_obj['message'] = 'The DB shit the bed.';
     $response_code = 401;
   }
 
