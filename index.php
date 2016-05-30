@@ -31,7 +31,7 @@ $app->add(new \Slim\Middleware\JwtAuthentication([
     "secret" => $config['jwt_secret'],
     "error" => function (ServerRequestInterface $request, ResponseInterface $response, $arguments) {
         $data["status"] = "error";
-        $data["message"] = $arguments["message"];
+        $data["message"] = "FAIL FAIL";//$arguments["message"];
         return $response->withJson($data, 401);
     }
 ]));
@@ -78,17 +78,14 @@ $app->post('/login', function (ServerRequestInterface $request, ResponseInterfac
       $secret = $this->settings['jwt_secret'];
       $token = JWT::encode($payload, $secret, "HS256");
 
-      $response_obj['success'] = 1;
-      $response_obj['token'] = $token;
+      $response_obj['id_token'] = $token;
       $response_code = 200;
     } else {
-      $response_obj['success'] = 0;
       $response_obj['message'] = 'Username or password invalid.';
       $response_code = 401;
     }
 
   } else {
-    $response_obj['success'] = 0;
     $response_obj['message'] = 'The DB shit the bed.';
     $response_code = 401;
   }

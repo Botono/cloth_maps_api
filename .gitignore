@@ -1,2 +1,3 @@
 includes/db_open.php
 includes/config.php
+.remote-sync.json
